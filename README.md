@@ -8,7 +8,7 @@
  
  安装包:
  
-`npm i react-native-barcode --save`
+`npm i react-native-barcode-qrcode --save`
 
 通过引用`import {BarCode,QRCode} from 'react-native-barcode-qrcode'`来使用
 
