@@ -9,7 +9,7 @@ export default React.createClass({
     render() {
         return (
             <View style={{width:this.props.width,height:this.props.height}}>
-                <WebView ref={ref=>{this.wv=ref;} onMessage={ev=>this.barcode=ev.nativeEvent.data}
+                <WebView ref={ref=>this.wv=ref} onMessage={ev=>this.barcode=ev.nativeEvent.data}
                     html={this._getHtml()}/>
             </View>
         )
