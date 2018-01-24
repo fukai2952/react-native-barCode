@@ -9,11 +9,14 @@ export default React.createClass({
     render() {
         return (
             <View style={{width:this.props.width,height:this.props.height}}>
-                <WebView
+                <WebView ref={ref=>{this.wv=ref;} onMessage={ev=>this.barcode=ev.nativeEvent.data}
                     html={this._getHtml()}/>
             </View>
         )
     },
+    getBarCode(){
+	return this.barcode;
+    }
     _getHtml() {
         let html = `<!doctype html>
                     <html>
@@ -47,7 +50,8 @@ export default React.createClass({
              }
             JsBarcode(canvas, "${this.props.value}",{  width:2, format: "ITF",
              displayValue: true,  fontSize: 28, backgroundColor:'${this.props.bgColor}'});
-             </script>
+            window.postMessage && window.postMessage(canvas.toDataURL("image/png"));
+		 </script>
              </body>
              </html>`;
         return html;
